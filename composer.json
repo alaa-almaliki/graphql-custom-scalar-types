@@ -1,0 +1,23 @@
+{
+  "name": "alaa-almaliki/graphql-custom-scalar-types",
+  "type": "library",
+  "homepage": "https://github.com/alaa-almaliki/graphql-custom-scalar-types",
+  "license": "MIT",
+  "keywords": ["GraphQL","PHP GraphQL", "Custom Scalar Types", "GraphQL Scalar Types"],
+  "authors": [
+    {
+      "name": "Alaa Al-Maliki",
+      "email": "alaa.almaliki@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "GraphQL\\": "src/GraphQL"
+    }
+  },
+  "require": {
+    "symfony/validator": "3.3",
+    "egulias/email-validator": "^1.2.8|~2.0",
+    "webonyx/graphql-php": "0.10.1"
+  }
+}
