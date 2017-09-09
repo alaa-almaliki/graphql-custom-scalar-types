@@ -36,7 +36,7 @@ class EmailType extends AbstractType
     public function validateValue($value)
     {
         if (!Email::isValid($value)) {
-            //throw new \UnexpectedValueException("Cannot represent value as email: " . Utils::printSafe($value));
+            throw new \UnexpectedValueException("Cannot represent value as email: " . Utils::printSafe($value));
         }
 
         return $this;
