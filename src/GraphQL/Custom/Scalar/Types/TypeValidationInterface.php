@@ -5,7 +5,7 @@ namespace GraphQL\Custom\Scalar\Types;
  * @package GraphQL\Custom\Scalar\Types
  * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
  */
-interface ValidatorInterface
+interface TypeValidationInterface
 {
     /**
      * @param  string $value

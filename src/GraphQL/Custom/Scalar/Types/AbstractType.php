@@ -9,7 +9,7 @@ use GraphQL\Type\Definition\CustomScalarType;
  * @package GraphQL\Custom\Scalar\Types
  * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
  */
-abstract class AbstractType extends CustomScalarType implements \GraphQL\Custom\Scalar\Types\ValidatorInterface
+abstract class AbstractType extends CustomScalarType implements TypeValidationInterface
 {
     /**
      * @param  string $value
