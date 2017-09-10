@@ -1,10 +1,7 @@
 <?php
 namespace GraphQL\Custom\Scalar\Types;
 
-use GraphQL\Custom\Scalar\Validation\Email;
-use GraphQL\Error\Error;
-use GraphQL\Language\AST\StringValueNode;
-use GraphQL\Utils;
+use GraphQL\Custom\Scalar\Validation;
 
 /**
  * Class EmailType
@@ -14,56 +11,35 @@ use GraphQL\Utils;
 class BasicEmailType extends AbstractType
 {
     /**
-     * BasicEmailType constructor.
-     * @param array $config
+     * @return string
      */
-    public function __construct(array $config = [])
+    protected function getTypeName()
     {
-        $config = [
-            'name' => 'Email',
-            'serialize' => [$this, 'serialize'],
-            'parseValue' => [$this, 'parseValue'],
-            'parseLiteral' => [$this, 'parseLiteral'],
-        ];
-        parent::__construct($config);
+        return 'Email';
     }
 
     /**
-     * @param  string $value
-     * @return $this
+     * @return string
      */
-    public function validateValue($value)
+    public function getValueErrorMessage()
     {
-        if (!$this->isValidEmail($value)) {
-            throw new \UnexpectedValueException("Cannot represent value as email: " . Utils::printSafe($value));
-        }
-
-        return $this;
+        return 'Cannot represent value as email';
     }
 
     /**
-     * @param  \GraphQL\Language\AST\Node $valueNode
-     * @return $this
-     * @throws Error
+     * @return string
      */
-    public function validateLiteral($valueNode)
+    public function getLiteralErrorMessage()
     {
-        if (!$valueNode instanceof StringValueNode) {
-            throw new Error('Query error: Can only parse strings got: ' . $valueNode->kind, [$valueNode]);
-        }
-        if (!$this->isValidEmail($valueNode->value)) {
-            throw new Error("Not a valid email", [$valueNode]);
-        }
-
-        return $this;
+        return 'Not a valid email';
     }
 
     /**
      * @param  string $value
      * @return bool
      */
-    protected function isValidEmail($value)
+    protected function evaluateValue($value)
     {
-        return Email::isValid($value);
+        return Validation::isValidEmail($value);
     }
 }

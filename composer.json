@@ -17,6 +17,7 @@
   },
   "require": {
     "webonyx/graphql-php": "0.10.*",
-    "nojacko/email-validator": "1.1.2"
+    "nojacko/email-validator": "1.1.2",
+    "giggsey/libphonenumber-for-php": "^8.8"
   }
 }

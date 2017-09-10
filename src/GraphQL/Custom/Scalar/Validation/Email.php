@@ -1,31 +1,51 @@
 <?php
 namespace GraphQL\Custom\Scalar\Validation;
 
+
 /**
  * Class Email
  * @package GraphQL\Custom\Scalar\Types\Validation
  * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
  */
-class Email
+class Email extends AbstractValidator
 {
     const EMAIL_VALIDATION_BASIC    = 'basic';
     const EMAIL_VALIDATION_STRICT   = 'strict';
 
+    private $validationMode;
+
     /**
-     * @param  string $email
-     * @param  string $mode
+     * @param  string $validationMode
+     * @return $this
+     */
+    public function setValidationMode($validationMode)
+    {
+        $this->validationMode = $validationMode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValidationMode()
+    {
+        return $this->validationMode ?: self::EMAIL_VALIDATION_BASIC;
+    }
+
+    /**
      * @return bool
      */
-    static public function isValid($email, $mode = self::EMAIL_VALIDATION_BASIC)
+    public function isValid()
     {
-        return static::getValidationObject($mode)->isValid($email);
+        return static::getValidationObject($this->getValidationMode())
+            ->isValid($this->getValue());
     }
 
     /**
      * @param $mode
      * @return \GraphQL\Custom\Scalar\Validation\Email\AbstractEmail
      */
-    static private function getValidationObject($mode)
+    private function getValidationObject($mode)
     {
         static $modes = [
             self::EMAIL_VALIDATION_BASIC => 'BasicEmail',

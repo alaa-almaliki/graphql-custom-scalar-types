@@ -1,5 +1,6 @@
 <?php
 namespace GraphQL\Custom\Scalar\Types;
+
 /**
  * Interface ValidatorInterface
  * @package GraphQL\Custom\Scalar\Types

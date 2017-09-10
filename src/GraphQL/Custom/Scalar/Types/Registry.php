@@ -10,16 +10,23 @@ class Registry
 {
     /**
      * @param  string $type
+     * @param  array $params
      * @return \GraphQL\Custom\Scalar\Types\AbstractType
      */
-    static private function create($type)
+    static private function create($type, array $params = [])
     {
         $classParts = [
             __NAMESPACE__,
             $type
         ];
         $class = implode('\\', $classParts);
-        return new $class();
+        $object =  new $class();
+
+        if ($object instanceof TypeParamsInterface) {
+            $object->setParameters($params);
+        }
+
+        return $object;
     }
 
     /**
@@ -36,5 +43,15 @@ class Registry
     static public function strictEmailType()
     {
         return static::create('StrictEmailType');
+    }
+
+    /**
+     * @param  string $regionCode
+     * @return AbstractType
+     */
+    static public function phoneNumberType($regionCode = null)
+    {
+        $params = ['region_code' => $regionCode];
+        return static::create('PhoneNumberType', $params);
     }
 }
