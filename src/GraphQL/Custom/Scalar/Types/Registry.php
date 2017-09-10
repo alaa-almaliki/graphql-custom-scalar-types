@@ -14,15 +14,27 @@ class Registry
      */
     static private function create($type)
     {
-        $class =  __NAMESPACE__ . '\\' . $type;
+        $classParts = [
+            __NAMESPACE__,
+            $type
+        ];
+        $class = implode('\\', $classParts);
         return new $class();
     }
 
     /**
      * @return AbstractType
      */
-    static public function emailType()
+    static public function basicEmailType()
     {
-        return static::create('EmailType');
+        return static::create('BasicEmailType');
+    }
+
+    /**
+     * @return AbstractType
+     */
+    static public function strictEmailType()
+    {
+        return static::create('StrictEmailType');
     }
 }

@@ -1,21 +1,20 @@
 <?php
 namespace GraphQL\Custom\Scalar\Types;
 
-use GraphQL\Custom\Scalar\Types\Validation\Email;
+use GraphQL\Custom\Scalar\Validation\Email;
 use GraphQL\Error\Error;
 use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Utils;
-use Symfony\Component\Validator\Validation;
 
 /**
  * Class EmailType
  * @package GraphQL\Custom\Scalar\Types
  * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
  */
-class EmailType extends AbstractType
+class BasicEmailType extends AbstractType
 {
     /**
-     * EmailType constructor.
+     * BasicEmailType constructor.
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -35,7 +34,7 @@ class EmailType extends AbstractType
      */
     public function validateValue($value)
     {
-        if (!Email::isValid($value)) {
+        if (!$this->isValidEmail($value)) {
             throw new \UnexpectedValueException("Cannot represent value as email: " . Utils::printSafe($value));
         }
 
@@ -52,10 +51,19 @@ class EmailType extends AbstractType
         if (!$valueNode instanceof StringValueNode) {
             throw new Error('Query error: Can only parse strings got: ' . $valueNode->kind, [$valueNode]);
         }
-        if (!Email::isValid($valueNode->value)) {
+        if (!$this->isValidEmail($valueNode->value)) {
             throw new Error("Not a valid email", [$valueNode]);
         }
 
         return $this;
+    }
+
+    /**
+     * @param  string $value
+     * @return bool
+     */
+    protected function isValidEmail($value)
+    {
+        return Email::isValid($value);
     }
 }

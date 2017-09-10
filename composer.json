@@ -16,8 +16,7 @@
     }
   },
   "require": {
-    "symfony/validator": "3.3",
-    "egulias/email-validator": "^1.2.8|~2.0",
-    "webonyx/graphql-php": "0.10.1"
+    "webonyx/graphql-php": "0.10.*",
+    "nojacko/email-validator": "1.1.2"
   }
 }
