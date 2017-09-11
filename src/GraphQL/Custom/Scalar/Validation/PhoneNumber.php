@@ -1,7 +1,7 @@
 <?php
 namespace GraphQL\Custom\Scalar\Validation;
 
-use libphonenumber\PhoneNumberUtil;
+use GraphQL\Custom\Scalar\Validation\Traits\PhoneNumberTrait;
 
 /**
  * Class PhoneNumber
@@ -10,8 +10,8 @@ use libphonenumber\PhoneNumberUtil;
  */
 class PhoneNumber extends AbstractValidator
 {
-    /** @var  PhoneNumberUtil */
-    private static $phoneNumberUtils;
+    use PhoneNumberTrait;
+
     /** @var  string */
     private $regionCode;
 
@@ -42,13 +42,5 @@ class PhoneNumber extends AbstractValidator
             self::getPhoneUtil()->parse($this->getValue(),
                 $this->getRegionCode())
         );
-    }
-
-    /**
-     * @return PhoneNumberUtil
-     */
-    private function getPhoneUtil()
-    {
-        return self::$phoneNumberUtils ?: (self::$phoneNumberUtils = PhoneNumberUtil::getInstance());
     }
 }

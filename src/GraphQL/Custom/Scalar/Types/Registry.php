@@ -15,11 +15,8 @@ class Registry
      */
     static private function create($type, array $params = [])
     {
-        $classParts = [
-            __NAMESPACE__,
-            $type
-        ];
-        $class = implode('\\', $classParts);
+        $class = __NAMESPACE__ . '\\' . $type;
+        /** @var AbstractType $object */
         $object =  new $class();
 
         if ($object instanceof TypeParamsInterface) {
@@ -53,5 +50,13 @@ class Registry
     {
         $params = ['region_code' => $regionCode];
         return static::create('PhoneNumberType', $params);
+    }
+
+    /**
+     * @return AbstractType
+     */
+    static public function phoneRegionType()
+    {
+        return static::create('PhoneRegionType');
     }
 }

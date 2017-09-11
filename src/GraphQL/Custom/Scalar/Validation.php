@@ -3,6 +3,7 @@ namespace GraphQL\Custom\Scalar;
 
 use GraphQL\Custom\Scalar\Validation\Email;
 use GraphQL\Custom\Scalar\Validation\PhoneNumber;
+use GraphQL\Custom\Scalar\Validation\PhoneRegion;
 
 /**
  * Class Validation
@@ -33,5 +34,14 @@ class Validation
         return (new PhoneNumber($phoneNumber))
             ->setRegionCode($regionCode)
             ->isValid();
+    }
+
+    /**
+     * @param  string $region
+     * @return bool
+     */
+    static public function isValidPhoneRegion($region)
+    {
+        return (new PhoneRegion($region))->isValid();
     }
 }

@@ -9,7 +9,7 @@ namespace GraphQL\Custom\Scalar\Validation;
 abstract class AbstractValidator
 {
     /** @var  string */
-    private $value;
+    protected $value;
 
     /**
      * AbstractValidator constructor.
