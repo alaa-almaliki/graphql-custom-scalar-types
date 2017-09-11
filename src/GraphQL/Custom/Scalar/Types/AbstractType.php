@@ -61,7 +61,7 @@ abstract class AbstractType extends CustomScalarType
     public function validateLiteral($valueNode)
     {
         if (!$valueNode instanceof StringValueNode) {
-            throw new Error('Query error: Can only parse strings got: ' . $valueNode->kind, [$valueNode]);
+            throw new Error($this->getLiteralErrorMessage() . ': ' . $valueNode->kind, [$valueNode]);
         }
         if (!$this->evaluateValue($valueNode->value)) {
             throw new Error("Not a valid email", [$valueNode]);
