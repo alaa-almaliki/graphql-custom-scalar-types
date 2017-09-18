@@ -1,6 +1,11 @@
 <?php
 namespace GraphQL\Custom\Scalar\Types;
 
+/**
+ * Interface TypeParamsInterface
+ * @package GraphQL\Custom\Scalar\Types
+ * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
+ */
 interface TypeParamsInterface
 {
     /**

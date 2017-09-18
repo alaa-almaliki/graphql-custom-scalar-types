@@ -52,8 +52,8 @@ class PhoneNumberType extends AbstractType implements TypeParamsInterface
      */
     public function setParameters(array $parameters)
     {
-       $this->parameters = $parameters;
-       return $this;
+        $this->parameters = $parameters;
+        return $this;
     }
 
     /**

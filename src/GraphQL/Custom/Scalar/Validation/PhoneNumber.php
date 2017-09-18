@@ -39,8 +39,7 @@ class PhoneNumber extends AbstractValidator
     public function isValid()
     {
         return self::getPhoneUtil()->isValidNumber(
-            self::getPhoneUtil()->parse($this->getValue(),
-                $this->getRegionCode())
+            self::getPhoneUtil()->parse($this->getValue(), $this->getRegionCode())
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
-namespace GraphQL\Custom\Scalar\Validation;
 
+namespace GraphQL\Custom\Scalar\Validation;
 
 /**
  * Class Email

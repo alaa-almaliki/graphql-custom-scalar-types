@@ -13,7 +13,7 @@ class Registry
      * @param  array $params
      * @return \GraphQL\Custom\Scalar\Types\AbstractType
      */
-    static private function create($type, array $params = [])
+    private static function create($type, array $params = [])
     {
         $class = __NAMESPACE__ . '\\' . $type;
         /** @var AbstractType $object */
@@ -29,7 +29,7 @@ class Registry
     /**
      * @return AbstractType
      */
-    static public function basicEmailType()
+    public static function basicEmailType()
     {
         return static::create('BasicEmailType');
     }
@@ -37,7 +37,7 @@ class Registry
     /**
      * @return AbstractType
      */
-    static public function strictEmailType()
+    public static function strictEmailType()
     {
         return static::create('StrictEmailType');
     }
@@ -46,7 +46,7 @@ class Registry
      * @param  string $regionCode
      * @return AbstractType
      */
-    static public function phoneNumberType($regionCode = null)
+    public static function phoneNumberType($regionCode = null)
     {
         $params = ['region_code' => $regionCode];
         return static::create('PhoneNumberType', $params);
@@ -55,7 +55,7 @@ class Registry
     /**
      * @return AbstractType
      */
-    static public function phoneRegionType()
+    public static function phoneRegionType()
     {
         return static::create('PhoneRegionType');
     }

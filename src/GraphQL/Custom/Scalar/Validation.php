@@ -17,7 +17,7 @@ class Validation
      * @param  string $mode
      * @return bool
      */
-    static public function isValidEmail($email, $mode = Email::EMAIL_VALIDATION_BASIC)
+    public static function isValidEmail($email, $mode = Email::EMAIL_VALIDATION_BASIC)
     {
         return (new Email($email))
             ->setValidationMode($mode)
@@ -29,7 +29,7 @@ class Validation
      * @param  string $regionCode
      * @return bool
      */
-    static public function isValidPhoneNumber($phoneNumber, $regionCode)
+    public static function isValidPhoneNumber($phoneNumber, $regionCode)
     {
         return (new PhoneNumber($phoneNumber))
             ->setRegionCode($regionCode)
@@ -40,7 +40,7 @@ class Validation
      * @param  string $region
      * @return bool
      */
-    static public function isValidPhoneRegion($region)
+    public static function isValidPhoneRegion($region)
     {
         return (new PhoneRegion($region))->isValid();
     }

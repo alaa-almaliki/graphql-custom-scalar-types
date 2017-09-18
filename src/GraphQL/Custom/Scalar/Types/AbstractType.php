@@ -11,8 +11,7 @@ use GraphQL\Utils;
  * @package GraphQL\Custom\Scalar\Types
  * @author Alaa Al-Maliki <alaa.almaliki@gmail.com>
  */
-abstract class AbstractType extends CustomScalarType
-    implements TypeValidationInterface, TypeMessageInterface
+abstract class AbstractType extends CustomScalarType implements TypeValidationInterface, TypeMessageInterface
 {
     /**
      * @return string
